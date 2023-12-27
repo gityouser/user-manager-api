@@ -37,4 +37,21 @@ export class UsersService {
 
     return deletedUser;
   }
+
+  update(id: number, updateUserDto: Partial<CreateUserDto>) {
+    const userIndex = this.users.findIndex((user) => user.id === +id);
+
+    if (userIndex === -1) {
+      return null;
+    }
+
+    const updatedUser = {
+      ...this.users[userIndex],
+      ...updateUserDto,
+    };
+
+    this.users[userIndex] = updatedUser;
+
+    return updatedUser;
+  }
 }
