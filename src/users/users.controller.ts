@@ -35,10 +35,7 @@ export class UsersController {
   }
 
   @Patch(':id')
-  update(
-    @Param('id') id: number,
-    @Body() updateUserDto: Partial<CreateUserDto>,
-  ) {
+  update(@Param('id') id: number, @Body() updateUserDto: CreateUserDto) {
     return this.usersService.update(id, updateUserDto);
   }
 }

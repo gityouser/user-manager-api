@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { usersSeed } from './seed';
 import { User } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user-dto';
 
 @Injectable()
 export class UsersService {
@@ -17,7 +18,7 @@ export class UsersService {
 
   create(createUserDto: CreateUserDto) {
     const newUser = {
-      id: this.users.length + 1,
+      id: this.users.length + 1, // could use uuid
       ...createUserDto,
     };
 
@@ -38,7 +39,7 @@ export class UsersService {
     return deletedUser;
   }
 
-  update(id: number, updateUserDto: Partial<CreateUserDto>) {
+  update(id: number, updateUserDto: UpdateUserDto): User | null {
     const userIndex = this.users.findIndex((user) => user.id === +id);
 
     if (userIndex === -1) {
