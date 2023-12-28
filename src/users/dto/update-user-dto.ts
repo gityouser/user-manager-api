@@ -1,4 +1,5 @@
 import { IsString, IsArray, IsOptional } from 'class-validator';
+import { GroupValue, RoleValue } from '../types/user.types';
 
 export class UpdateUserDto {
   @IsOptional()
@@ -7,9 +8,9 @@ export class UpdateUserDto {
 
   @IsOptional()
   @IsArray()
-  roles?: string[];
+  roles?: RoleValue[];
 
   @IsOptional()
   @IsArray()
-  groups?: string[];
+  groups?: GroupValue[];
 }

@@ -46,7 +46,7 @@ export class UsersService {
       return null;
     }
 
-    const updatedUser = {
+    const updatedUser: User = {
       ...this.users[userIndex],
       ...updateUserDto,
     };

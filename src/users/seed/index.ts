@@ -1,7 +1,8 @@
 import { Role } from '../enum/role.enum';
 import { Group } from '../enum/group.enum';
+import { User } from '../entities/user.entity';
 
-export const usersSeed = [
+export const usersSeed: User[] = [
   {
     id: 1,
     name: 'John Doe',

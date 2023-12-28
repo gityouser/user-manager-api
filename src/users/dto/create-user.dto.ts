@@ -1,4 +1,13 @@
-import { IsString, IsArray, ArrayMinSize, MaxLength } from 'class-validator';
+import {
+  IsString,
+  IsArray,
+  ArrayMinSize,
+  MaxLength,
+  IsEnum,
+} from 'class-validator';
+import { Role } from '../enum/role.enum';
+import { Group } from '../enum/group.enum';
+import { GroupValue, RoleValue } from '../types/user.types';
 
 export class CreateUserDto {
   @IsString()
@@ -7,11 +16,11 @@ export class CreateUserDto {
 
   @IsArray()
   @ArrayMinSize(1)
-  roles: string[];
-  // TODO:  should be only from the predefined roles
+  @IsEnum(Role, { each: true })
+  roles: RoleValue[];
 
   @IsArray()
   @ArrayMinSize(1)
-  groups: string[];
-  // TODO: should be only from the predefined groups
+  @IsEnum(Group, { each: true })
+  groups: GroupValue[];
 }
