@@ -1,38 +1,41 @@
+import { Role } from '../enum/role.enum';
+import { Group } from '../enum/group.enum';
+
 export const usersSeed = [
   {
     id: 1,
     name: 'John Doe',
-    roles: ['ADMIN', 'PERSONAL'],
-    groups: ['GROUP_1', 'GROUP_2'],
+    roles: [Role.Admin, Role.Personal],
+    groups: [Group.Group1, Group.Group2],
   },
-
   {
     id: 2,
     name: 'Grabriel Monroe',
-    roles: ['PERSONAL'],
-    groups: ['GROUP_1', 'GROUP_2'],
+    roles: [Role.Personal],
+    groups: [Group.Group1, Group.Group2],
   },
-
-  { id: 3, name: 'Alex Xavier', roles: ['PERSONAL'], groups: ['GROUP_2'] },
-
+  {
+    id: 3,
+    name: 'Alex Xavier',
+    roles: [Role.Personal],
+    groups: [Group.Group2],
+  },
   {
     id: 4,
     name: 'Jarvis Khan',
-    roles: ['ADMIN', 'PERSONAL'],
-    groups: ['GROUP_2'],
+    roles: [Role.Admin, Role.Personal],
+    groups: [Group.Group2],
   },
-
   {
     id: 5,
     name: 'Martines Polok',
-    roles: ['ADMIN', 'PERSONAL'],
-    groups: ['GROUP_1'],
+    roles: [Role.Admin, Role.Personal],
+    groups: [Group.Group1],
   },
-
   {
     id: 6,
     name: 'Gabriela Wozniak',
-    roles: ['VIEWER', 'PERSONAL'],
-    groups: ['GROUP_1'],
+    roles: [Role.Viewer, Role.Personal],
+    groups: [Group.Group1],
   },
 ];
