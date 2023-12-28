@@ -2,7 +2,7 @@ import { Role } from '../enum/role.enum';
 import { Group } from '../enum/group.enum';
 import { User } from '../entities/user.entity';
 
-export const usersSeed: User[] = [
+const usersSeed: User[] = [
   {
     id: 1,
     name: 'John Doe',
@@ -40,3 +40,7 @@ export const usersSeed: User[] = [
     groups: [Group.Group1],
   },
 ];
+
+export function seedUsers() {
+  return process.env.NODE_ENV === 'development' ? usersSeed : [];
+}

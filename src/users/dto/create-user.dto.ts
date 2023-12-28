@@ -4,6 +4,7 @@ import {
   ArrayMinSize,
   MaxLength,
   IsEnum,
+  MinLength,
 } from 'class-validator';
 import { Role } from '../enum/role.enum';
 import { Group } from '../enum/group.enum';
@@ -12,6 +13,7 @@ import { GroupValue, RoleValue } from '../types/user.types';
 export class CreateUserDto {
   @IsString()
   @MaxLength(100)
+  @MinLength(3) // Added on top of the specs
   name: string;
 
   @IsArray()

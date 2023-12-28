@@ -1,12 +1,12 @@
-import { Injectable } from '@nestjs/common';
-import { usersSeed } from './seed';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { seedUsers } from './seed';
 import { User } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user-dto';
 
 @Injectable()
 export class UsersService {
-  private users: User[] = [...usersSeed];
+  private users: User[] = [...seedUsers()];
 
   findAll() {
     return this.users;
@@ -31,7 +31,7 @@ export class UsersService {
     const userIndex = this.users.findIndex((user) => user.id === +id);
 
     if (userIndex === -1) {
-      return null;
+      throw new NotFoundException('User not found');
     }
 
     const deletedUser = this.users.splice(userIndex, 1);
@@ -43,7 +43,7 @@ export class UsersService {
     const userIndex = this.users.findIndex((user) => user.id === +id);
 
     if (userIndex === -1) {
-      return null;
+      throw new NotFoundException('User not found');
     }
 
     const updatedUser: User = {

@@ -52,8 +52,8 @@ describe('UsersService', () => {
       roles: [Role.Admin],
       groups: [Group.Group1],
     });
-    const updatedUser = service.update(createdUser.id, { name: 'Andy Const' });
-    expect(updatedUser).toEqual({ ...createdUser, name: 'Andy Consta' });
+    const updatedUser = service.update(createdUser.id, { name: 'Jane Doe' });
+    expect(updatedUser).toEqual({ ...createdUser, name: 'Jane Doe' });
   });
 
   it('should delete a user', () => {
