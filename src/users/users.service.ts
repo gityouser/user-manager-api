@@ -6,7 +6,15 @@ import { UpdateUserDto } from './dto/update-user-dto';
 
 @Injectable()
 export class UsersService {
-  private users: User[] = [...seedUsers()];
+  private users: User[];
+
+  constructor() {
+    this.users = [...seedUsers()];
+  }
+
+  setUsers(users: User[]) {
+    this.users = users;
+  }
 
   findAll() {
     return this.users;
