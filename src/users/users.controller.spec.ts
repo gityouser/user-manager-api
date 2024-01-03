@@ -1,5 +1,5 @@
 import * as request from 'supertest';
-import { INestApplication } from '@nestjs/common';
+import { HttpStatus, INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from '../app.module';
 import { Role } from './enum/role.enum';
@@ -47,7 +47,7 @@ describe('UsersController, end-to-end', () => {
         roles: [Role.Admin],
         groups: [Group.Group1],
       })
-      .expect(201);
+      .expect(HttpStatus.CREATED);
   });
 
   it('POST /users should fail for a user without *create* permission', async () => {
@@ -59,21 +59,21 @@ describe('UsersController, end-to-end', () => {
         roles: [Role.Personal],
         groups: [Group.Group1],
       })
-      .expect(403);
+      .expect(HttpStatus.FORBIDDEN);
   });
 
   it('GET /users should retrieve list of users with correct permissions', async () => {
     await request(app.getHttpServer())
       .get('/users')
       .set('Authorization', adminUserId.toString())
-      .expect(200);
+      .expect(HttpStatus.OK);
   });
 
   it('GET /users/:id should retrieve a user with correct permissions', async () => {
     await request(app.getHttpServer())
       .get(`/users/${adminUserId}`)
       .set('Authorization', adminUserId.toString())
-      .expect(200);
+      .expect(HttpStatus.OK);
   });
 
   it('PATCH /users/:id should update a user with correct permissions', async () => {
@@ -81,7 +81,7 @@ describe('UsersController, end-to-end', () => {
       .patch(`/users/${adminUserId}`)
       .set('Authorization', adminUserId.toString())
       .send({ name: 'Name Shifter' })
-      .expect(200);
+      .expect(HttpStatus.OK);
   });
 
   it('DELETE /users/:id should remove a user with correct permissions', async () => {
@@ -94,7 +94,7 @@ describe('UsersController, end-to-end', () => {
     await request(app.getHttpServer())
       .delete(`/users/${userToDelete.id}`)
       .set('Authorization', adminUserId.toString())
-      .expect(200);
+      .expect(HttpStatus.OK);
   });
 
   afterAll(async () => {
